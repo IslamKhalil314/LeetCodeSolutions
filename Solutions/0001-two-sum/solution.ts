@@ -1,20 +1,11 @@
 function twoSum(arr: number[], target: number): number[] {
- let right = 1;
-  let left = 0;
-  if (arr.length === 0) {
-    return [];
-  }
-  while (arr[right] + arr[left] !== target) {
-    if (right === arr.length - 1) {
-      left++;
-      right = left + 1;
-      continue;
+  let map = new Map<number, number>();
+  for (let i = 0; i < arr.length; i++) {
+    if (map.has(arr[i])) {
+      return [i, map.get(arr[i])!];
+    } else {
+      map.set(target - arr[i], i);
     }
-    if (left === arr.length - 1) {
-      return [];
-    }
-    right++;
   }
-
-  return [left, right];
+  return [];
 };
